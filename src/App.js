@@ -7,6 +7,7 @@ import { Route, BrowserRouter as Router, Routes  } from 'react-router-dom';
 import CartPage from './pages/CartPage';
 import Checkout from './pages/Checkout';
 import ProductDetail from "./pages/ProductDetail"
+import Protected from './features/auth/components/Protected';
 
 
 const App = () => {
@@ -14,12 +15,12 @@ const App = () => {
     <> 
     <Router>
       <Routes >
-        <Route path='/'element={<Home/>}/>
+        <Route path='/'element={<Protected><Home/> </Protected>}/>
         <Route path='/signup' element={<SignUpPage/>}/>
         <Route path='/login' element={<LoginPage/>}/>
-        <Route path='/cart' element={<CartPage/>}/>
-        <Route path='/checkout' element={<Checkout/>}/>
-        <Route path='/productdetail' element={<ProductDetail/>}/>
+        <Route path='/cart' element={<Protected><CartPage/> </Protected>}/>
+        <Route path='/checkout' element={<Protected><Checkout/> </Protected>}/>
+        <Route path='/productdetail/:id' element={<Protected><ProductDetail/> </Protected>}/>
 
 
 
