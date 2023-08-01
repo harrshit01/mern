@@ -2338,8 +2338,375 @@
     {
       "email": "hrsttyagi@gmail.com",
       "password": "Harshit01",
-      "id": 1
+      "id": 1,
+      "address": [
+        {
+          "name": "Tyagi",
+          "email": "hrsttyagi@gmail.com",
+          "phone": "8954216844",
+          "street": "819/26 Rampuri",
+          "city": "Muzaffarnagar",
+          "state": "UP",
+          "pinCode": "251011"
+        },
+        {
+          "name": "johncena",
+          "email": "john@gmail.com",
+          "phone": "1234567890",
+          "street": "819/27 Rampuri",
+          "city": "Muzaffarnagar",
+          "state": "UP",
+          "pinCode": "251011"
+        }
+      ]
+    },
+    {
+      "email": "test@gmail.com",
+      "password": "Harshit01",
+      "address": [
+        {
+          "name": "Tyagi",
+          "email": "test@gmail.com",
+          "city": "Muzaffarnagar",
+          "state": "UP",
+          "pinCode": "251011",
+          "phone": "1234567890",
+          "street": "819/27 Rampuri"
+        }
+      ],
+      "id": 2
     }
-   
+  ],
+  "cart": [],
+  "orders": [
+    {
+      "items": [
+        {
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/2/1.jpg",
+            "https://i.dummyjson.com/data/products/2/2.jpg",
+            "https://i.dummyjson.com/data/products/2/3.jpg",
+            "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 1
+        }
+      ],
+      "totalamount": 899,
+      "totalitems": 1,
+      "user": {
+        "email": "hrsttyagi@gmail.com",
+        "password": "Harshit01",
+        "id": 1,
+        "address": [
+          {
+            "name": "Harshit Tyagi",
+            "email": "hrsttyagi@gmail.com",
+            "phone": "8954216844",
+            "street": "819/26 Rampuri",
+            "city": "Muzaffarnagar",
+            "state": "UP",
+            "pinCode": "251011"
+          }
+        ]
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Harshit Tyagi",
+        "email": "hrsttyagi@gmail.com",
+        "phone": "8954216844",
+        "street": "819/26 Rampuri",
+        "city": "Muzaffarnagar",
+        "state": "UP",
+        "pinCode": "251011"
+      },
+      "status": "pending",
+      "id": 1
+    },
+    {
+      "items": [
+        {
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/2/1.jpg",
+            "https://i.dummyjson.com/data/products/2/2.jpg",
+            "https://i.dummyjson.com/data/products/2/3.jpg",
+            "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 2,
+          "id": 1
+        }
+      ],
+      "totalamount": 899,
+      "totalitems": 1,
+      "user": {
+        "email": "test@gmail.com",
+        "password": "Harshit01",
+        "address": [
+          {
+            "name": "Harshit Tyagi",
+            "email": "test@gmail.com",
+            "phone": "1234567890",
+            "street": "819/27 Rampuri",
+            "city": "Muzaffarnagar",
+            "state": "UP",
+            "pinCode": "251011"
+          }
+        ],
+        "id": 2
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Harshit Tyagi",
+        "email": "test@gmail.com",
+        "phone": "1234567890",
+        "street": "819/27 Rampuri",
+        "city": "Muzaffarnagar",
+        "state": "UP",
+        "pinCode": "251011"
+      },
+      "status": "pending",
+      "id": 2
+    },
+    {
+      "items": [
+        {
+          "title": "Samsung Universe 9",
+          "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
+          "price": 1249,
+          "discountPercentage": 15.46,
+          "rating": 4.09,
+          "stock": 36,
+          "brand": "Samsung",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/3/1.jpg"
+          ],
+          "quantity": 1,
+          "user": 2,
+          "id": 1
+        }
+      ],
+      "totalamount": 1249,
+      "totalitems": 1,
+      "user": {
+        "email": "test@gmail.com",
+        "password": "Harshit01",
+        "address": [
+          {
+            "name": "Harshit Tyagi",
+            "email": "test@gmail.com",
+            "phone": "1234567890",
+            "street": "819/27 Rampuri",
+            "city": "Muzaffarnagar",
+            "state": "UP",
+            "pinCode": "251011"
+          }
+        ],
+        "id": 2
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Harshit Tyagi",
+        "email": "test@gmail.com",
+        "phone": "1234567890",
+        "street": "819/27 Rampuri",
+        "city": "Muzaffarnagar",
+        "state": "UP",
+        "pinCode": "251011"
+      },
+      "status": "pending",
+      "id": 3
+    },
+    {
+      "items": [
+        {
+          "title": "Huawei P30",
+          "description": "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
+          "price": 499,
+          "discountPercentage": 10.58,
+          "rating": 4.09,
+          "stock": 32,
+          "brand": "Huawei",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/5/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/5/1.jpg",
+            "https://i.dummyjson.com/data/products/5/2.jpg",
+            "https://i.dummyjson.com/data/products/5/3.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 2
+        }
+      ],
+      "totalamount": 499,
+      "totalitems": 1,
+      "user": {
+        "email": "hrsttyagi@gmail.com",
+        "password": "Harshit01",
+        "id": 1,
+        "address": [
+          {
+            "name": "Tyagi",
+            "email": "hrsttyagi@gmail.com",
+            "phone": "8954216844",
+            "street": "819/26 Rampuri",
+            "city": "Muzaffarnagar",
+            "state": "UP",
+            "pinCode": "251011"
+          },
+          {
+            "name": "johncena",
+            "email": "john@gmail.com",
+            "phone": "1234567890",
+            "street": "819/27 Rampuri",
+            "city": "Muzaffarnagar",
+            "state": "UP",
+            "pinCode": "251011"
+          }
+        ]
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "johncena",
+        "email": "john@gmail.com",
+        "phone": "1234567890",
+        "street": "819/27 Rampuri",
+        "city": "Muzaffarnagar",
+        "state": "UP",
+        "pinCode": "251011"
+      },
+      "status": "pending",
+      "id": 4
+    },
+    {
+      "items": [
+        {
+          "title": "Huawei P30",
+          "description": "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
+          "price": 499,
+          "discountPercentage": 10.58,
+          "rating": 4.09,
+          "stock": 32,
+          "brand": "Huawei",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/5/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/5/1.jpg",
+            "https://i.dummyjson.com/data/products/5/2.jpg",
+            "https://i.dummyjson.com/data/products/5/3.jpg"
+          ],
+          "quantity": 1,
+          "user": 2,
+          "id": 1
+        }
+      ],
+      "totalamount": 499,
+      "totalitems": 1,
+      "user": {
+        "email": "test@gmail.com",
+        "password": "Harshit01",
+        "address": [
+          {
+            "name": "Tyagi",
+            "email": "test@gmail.com",
+            "city": "Muzaffarnagar",
+            "state": "UP",
+            "pinCode": "251011",
+            "phone": "1234567890",
+            "street": "819/27 Rampuri"
+          }
+        ],
+        "id": 2
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Tyagi",
+        "email": "test@gmail.com",
+        "city": "Muzaffarnagar",
+        "state": "UP",
+        "pinCode": "251011",
+        "phone": "1234567890",
+        "street": "819/27 Rampuri"
+      },
+      "status": "pending",
+      "id": 5
+    },
+    {
+      "items": [
+        {
+          "title": "Round Silver Frame Sun Glasses",
+          "description": "A pair of sunglasses can protect your eyes from being hurt. For car driving, vacation travel, outdoor activities, social gatherings,",
+          "price": 19,
+          "discountPercentage": 10.1,
+          "rating": 4.94,
+          "stock": 78,
+          "brand": "Designer Sun Glasses",
+          "category": "sunglasses",
+          "thumbnail": "https://i.dummyjson.com/data/products/81/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/81/1.jpg",
+            "https://i.dummyjson.com/data/products/81/2.jpg",
+            "https://i.dummyjson.com/data/products/81/3.jpg",
+            "https://i.dummyjson.com/data/products/81/4.webp",
+            "https://i.dummyjson.com/data/products/81/thumbnail.jpg"
+          ],
+          "quantity": 4,
+          "user": 2,
+          "id": 1
+        }
+      ],
+      "totalamount": 76,
+      "totalitems": 4,
+      "user": {
+        "email": "test@gmail.com",
+        "password": "Harshit01",
+        "address": [
+          {
+            "name": "Tyagi",
+            "email": "test@gmail.com",
+            "city": "Muzaffarnagar",
+            "state": "UP",
+            "pinCode": "251011",
+            "phone": "1234567890",
+            "street": "819/27 Rampuri"
+          }
+        ],
+        "id": 2
+      },
+      "paymentMethod": "card",
+      "selectedAddress": {
+        "name": "Tyagi",
+        "email": "test@gmail.com",
+        "city": "Muzaffarnagar",
+        "state": "UP",
+        "pinCode": "251011",
+        "phone": "1234567890",
+        "street": "819/27 Rampuri"
+      },
+      "status": "pending",
+      "id": 6
+    }
   ]
 }
