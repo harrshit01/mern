@@ -5,8 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductsByidAsync ,selectProductByid } from '../ProductSlice.js';
 import { useParams } from 'react-router-dom';
 import {selectLoggedInUser} from "../../auth/authSlice.js"
-import { addToCartAsync } from '../../cart/cartSlice.js';
+import { addToCartAsync, selectItems } from '../../cart/cartSlice.js';
 import { discountedPrice } from '../../../app/constants.js';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 // TODO: In server data we will add colors, sizes , highlights. to each product
 
 const colors = [
@@ -43,14 +45,22 @@ export default function ProductDetail() {
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
   const product = useSelector(selectProductByid);
   const user = useSelector(selectLoggedInUser)
+  const items = useSelector(selectItems);
   const dispatch =  useDispatch();
   
   const params = useParams();
   const handlecart=(e)=>{
     e.preventDefault();
-    const newItem = {...product,quantity:1,user:user.id};
-    delete newItem["id"];
-    dispatch(addToCartAsync(newItem));
+    if(items.findIndex((item)=>item.productId===product.id)<0){
+
+      const newItem = {...product,productId: product.id,quantity:1,user:user.id};
+      delete newItem["id"];
+      dispatch(addToCartAsync(newItem));
+      toast.success(`${product?.title} has been Added to cart`)
+    }else{
+      toast.info(`Item already exist in cart`)
+
+    }
 
   }
   useEffect(() => {
@@ -59,6 +69,7 @@ export default function ProductDetail() {
 
   return (
     <div className="bg-white">
+      
       {product && (
         <div className="pt-6">
           <nav aria-label="Breadcrumb">
@@ -306,6 +317,7 @@ export default function ProductDetail() {
                 >
                   Add to Cart
                 </button>
+                <ToastContainer position='top-center' theme="colored" autoClose={2000}/>
               </form>
             </div>
 
