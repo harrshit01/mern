@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import { StarIcon } from '@heroicons/react/20/solid';
 import { RadioGroup } from '@headlessui/react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProductsByidAsync ,selectProductByid } from '../ProductSlice.js';
+import { fetchProductsByidAsync ,selectProductByid } from '../../product/ProductSlice';
 import { useParams } from 'react-router-dom';
 import {selectLoggedInUser} from "../../auth/authSlice.js"
 import { addToCartAsync } from '../../cart/cartSlice.js';
-import { discountedPrice } from '../../../app/constants.js';
+import { discountedPrice } from '../../../app/constants';
 // TODO: In server data we will add colors, sizes , highlights. to each product
 
 const colors = [
@@ -148,9 +148,6 @@ export default function ProductDetail() {
               <h2 className="sr-only">Product information</h2>
               <p className="text-3xl tracking-tight text-gray-900">
                ${discountedPrice(product)}
-              </p>
-              <p className="text-xl line-through tracking-tight text-gray-900">
-               ${product.price}
               </p>
 
               {/* Reviews */}

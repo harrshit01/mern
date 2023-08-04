@@ -17,12 +17,12 @@ const Signup = () => {
     {user && <Navigate to="/" replace={true}></Navigate>}
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          {/* <img
+          <img
         className="mx-auto h-10 w-auto"
-        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+        src="/favicon.ico"
         alt="Your Company"
-      /> */}
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+      />
+          <h2 className="mt-4 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Create your account
           </h2>
         </div>
@@ -33,7 +33,7 @@ const Signup = () => {
             className="space-y-6"
             onSubmit={handleSubmit((data) => {
               dispatch(
-                createUserAsync({ email: data.email, password: data.password ,address:[]})
+                createUserAsync({ email: data.email, password: data.password ,address:[],role:"user"})
               );
 
               console.log(data);

@@ -2,13 +2,15 @@ import { Fragment, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, Navigate } from 'react-router-dom'
 import { deleteCartItemAsync, selectItems, updateCartAsync } from './cartSlice';
+import { discountedPrice } from '../../app/constants';
+
 
 
 
 export default function Example() {
   const items = useSelector(selectItems);
   const dispatch= useDispatch();
-  const totalamount = items.reduce((amount,item)=>amount += item.price*item.quantity,0);
+  const totalamount = items.reduce((amount,item)=>amount += discountedPrice(item)*item.quantity,0);
   const totalitems = items.reduce((count,item)=>count += item.quantity,0);
 
   const [open, setOpen] = useState(true)
@@ -49,7 +51,7 @@ export default function Example() {
                   <h3>
                     <a href={item.href}>{item.title}</a>
                   </h3>
-                  <p className="ml-4">${item.price}</p>
+                  <p className="ml-4">${discountedPrice(item)}</p>
                 </div>
                 <p className="mt-1 text-sm text-gray-500">{item.brand}</p>
               </div>

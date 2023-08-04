@@ -5,6 +5,8 @@ import {
   fetchBrands,
   fetchCategories,
   fetchProductByid,
+  createProduct,
+  updateProduct,
 } from "./ProductAPI";
 const initialState = {
   products: [],
@@ -25,7 +27,7 @@ export const fetchAllProductsAsync = createAsyncThunk(
 export const fetchProductsByFiltersAsync = createAsyncThunk(
   "product/fetchProductsByFilters",
   async ({ filter, sort, pagination }) => {
-    const data = await fetchProductsByFilters({ filter, sort, pagination });
+    const data = await fetchProductsByFilters( filter, sort, pagination );
     return data;
   }
 );
@@ -49,6 +51,22 @@ export const fetchProductsByidAsync = createAsyncThunk(
   "product/fetchProductByid",
   async (id) => {
     const data = await fetchProductByid(id);
+    // The value we return becomes the `fulfilled` action payload
+    return data;
+  }
+);
+export const createProductAsync = createAsyncThunk(
+  "product/createProduct",
+  async (product) => {
+    const data = await createProduct(product);
+    // The value we return becomes the `fulfilled` action payload
+    return data;
+  }
+);
+export const updateProductAsync = createAsyncThunk(
+  "product/updateProduct",
+  async (product) => {
+    const data = await updateProduct(product);
     // The value we return becomes the `fulfilled` action payload
     return data;
   }
@@ -99,7 +117,24 @@ export const productSlice = createSlice({
       .addCase(fetchProductsByidAsync.fulfilled, (state, action) => {
         state.status = "idle";
         state.selectedProduct = action.payload;
-      });
+      })
+      .addCase(createProductAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(createProductAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.products.push(action.payload);
+      })
+      .addCase(updateProductAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updateProductAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        const index = state.products.findIndex(
+          (product) => product.id === action.payload.id
+        );
+        state.products[index] = action.payload;
+      })
   },
 });
 

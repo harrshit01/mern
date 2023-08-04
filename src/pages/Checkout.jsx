@@ -13,7 +13,7 @@ import {
 } from "../features/auth/authSlice";
 import { createOrderAsync, selectCurrentOrder } from "../features/order/orderSlice";
 import { selectUserInfo } from "../features/user/userSlice";
-
+import {discountedPrice} from "../app/constants";
 const Checkout = () => {
   const {
     register,
@@ -28,7 +28,7 @@ const Checkout = () => {
   const [paymentMethod, setPaymentMethod] = useState("cash");
   const dispatch = useDispatch();
   const totalamount = items.reduce(
-    (amount, item) => (amount += item.price * item.quantity),
+    (amount, item) => (amount += discountedPrice(item) * item.quantity),
     0
   );
   const totalitems = items.reduce((count, item) => (count += item.quantity), 0);
@@ -374,7 +374,7 @@ const Checkout = () => {
                             <h3>
                               <a href={item.href}>{item.title}</a>
                             </h3>
-                            <p className="ml-4">${item.price}</p>
+                            <p className="ml-4">${discountedPrice(item)}</p>
                           </div>
                           <p className="mt-1 text-sm text-gray-500">
                             {item.brand}
