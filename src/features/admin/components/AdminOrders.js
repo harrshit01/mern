@@ -13,6 +13,7 @@ import {
   ArrowUpIcon,
   ArrowDownIcon,
 } from '@heroicons/react/24/outline';
+import Pagination from '../../common/Pagination';
 // import Pagination from '../../common/Pagination';
 
 function AdminOrders() {
@@ -96,13 +97,13 @@ function AdminOrders() {
                     className="py-3 px-6 text-left cursor-pointer"
                     onClick={(e) =>
                       handleSort({
-                        sort: 'totalAmount',
+                        sort: 'totalamount',
                         order: sort?._order === 'asc' ? 'desc' : 'asc',
                       })
                     }
                   >
                     Total Amount {' '}
-                    {sort._sort === 'totalAmount' &&
+                    {sort._sort === 'totalamount' &&
                       (sort._order === 'asc' ? (
                         <ArrowUpIcon className="w-4 h-4 inline"></ArrowUpIcon>
                       ) : (
@@ -196,12 +197,12 @@ function AdminOrders() {
           </div>
         </div>
       </div>
-      {/* <Pagination
+      <Pagination
         page={page}
         setPage={setPage}
         handlePage={handlePage}
         totalItems={totalOrders}
-      ></Pagination> */}
+      ></Pagination>
     </div>
   );
 }

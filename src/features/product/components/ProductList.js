@@ -14,8 +14,7 @@ import {
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
+  
   StarIcon,
 } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
@@ -26,6 +25,7 @@ import {
   PlusIcon,
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
+import Pagination from "../../common/Pagination";
 const sortOptions = [
   { name: "Best Rating", sort: "rating", order: "desc", current: false },
   { name: "Price: Low to High", sort: "price", order: "asc", current: false },
@@ -390,84 +390,6 @@ function DesktopFilter({ handleFilter, handleSort, filters }) {
   );
 }
 
-function Pagination({ handlePage, page, setPage, totalItems }) {
-  const totalpages = Math.ceil(totalItems / Items_Per_Page);
-  return (
-    <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
-      <div className="flex flex-1 justify-between sm:hidden">
-        <div
-          onClick={() => handlePage(page > 1 ? page - 1 : page)}
-          href="#"
-          className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-        >
-          Previous
-        </div>
-        <div
-          onClick={() => handlePage(page < totalpages ? page + 1 : page)}
-          href="#"
-          className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-        >
-          Next
-        </div>
-      </div>
-      <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-        <div>
-          <p className="text-sm text-gray-700">
-            Showing{" "}
-            <span className="font-medium">
-              {(page - 1) * Items_Per_Page + 1}
-            </span>{" "}
-            to{" "}
-            <span className="font-medium">
-              {page * Items_Per_Page > totalItems
-                ? totalItems
-                : page * Items_Per_Page}
-            </span>{" "}
-            of <span className="font-medium">{totalItems}</span> results
-          </p>
-        </div>
-        <div>
-          <nav
-            className="isolate inline-flex -space-x-px rounded-md shadow-sm"
-            aria-label="Pagination"
-          >
-            <div
-              onClick={() => handlePage(page > 1 ? page - 1 : page)}
-              href="#"
-              className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-            >
-              <span className="sr-only">Previous</span>
-              <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
-            </div>
-
-            {Array.from({ length: totalpages }).map((el, i) => (
-              <div
-                onClick={() => handlePage(i + 1)}
-                aria-current="page"
-                className={`relative z-10 inline-flex items-center ${
-                  i + 1 === page
-                    ? "bg-indigo-600 text-white"
-                    : "bg-slate-200 text-black"
-                } px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
-              >
-                {i + 1}
-              </div>
-            ))}
-
-            <div
-              onClick={() => handlePage(page < totalpages ? page + 1 : page)}
-              href="#"
-              className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-            >
-              <span className="sr-only">Next</span>
-              <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
-            </div>
-          </nav>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function ProductGrid({ products }) {
   return (
@@ -508,7 +430,18 @@ function ProductGrid({ products }) {
                       ${product.price}
                     </p>
                   </div>
+
                 </div>
+                {product.deleted && (
+                  <div>
+                    <p className="text-sm text-red-400">product deleted</p>
+                  </div>
+                )}
+                {product.stock<=0 && (
+                  <div>
+                    <p className="text-sm text-red-400">out of stock</p>
+                  </div>
+                )}
               </div>
             </Link>
           ))}
