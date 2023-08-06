@@ -34,7 +34,6 @@ export function deleteCartItem(itemId) {
       method: "DELETE",
       headers: { "content-type": "application/json" },
     });
-    const data = await response.json();
     resolve({ id: itemId });
   });
 }

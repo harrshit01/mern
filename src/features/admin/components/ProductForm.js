@@ -88,9 +88,12 @@ function ProductForm() {
             product.id = params.id;
             product.rating = selectedProduct.rating || 0;
             dispatch(updateProductAsync(product));
+            toast.success("Product has been updated successfully");
             reset();
           } else {
             dispatch(createProductAsync(product));
+            toast.success("Product created successfully");
+
             reset();
             //TODO:  on product successfully added clear fields and show a message
           }
@@ -103,7 +106,7 @@ function ProductForm() {
             </h2>
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-              {selectedProduct.deleted&& <h2 className="text-red-500 sm:col-span-6">This Product is Deleted</h2>}
+              {selectedProduct?.deleted&& <h2 className="text-red-500 sm:col-span-6">This Product is Deleted</h2>}
               <div className="sm:col-span-6">
                 <label
                   htmlFor="title"

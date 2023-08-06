@@ -1,15 +1,6 @@
 // A mock function to mimic making an async request for data
-export  function fetchAllproducts() {
-  return new Promise(async(resolve) =>{
 
-    const response = await fetch("http://localhost:8080/products");
-    const data = await response.json();
-    
-    resolve(data);
-  }
-  );
-}
-export function fetchProductsByFilters(filter,sort,pagination) {
+export function fetchProductsByFilters(filter,sort,pagination,admin) {
   // filter = {"category":"smartphone"}
   // TODO : on server we will support multi values
 
@@ -34,10 +25,13 @@ export function fetchProductsByFilters(filter,sort,pagination) {
     queryString += `${key}=${pagination[key]}&`
 
   }
+ if(admin){
+  queryString+='admin=true';
 
+ }
   return new Promise(async (resolve) =>{
     //TODO: we will not hard-code server URL here
-    const response = await fetch('http://localhost:8080/products?'+queryString) 
+    const response = await fetch('http://localhost:8080/products?'+queryString ) 
     const data = await response.json();
 
     const totalItems = response.headers.get("X-Total-Count")
@@ -49,7 +43,7 @@ export function fetchProductsByFilters(filter,sort,pagination) {
 }
 export function fetchCategories() {
   return new Promise(async (resolve) =>{
-    const response = await fetch('http://localhost:8080/categories') 
+    const response = await fetch('http://localhost:8080/category') 
     const data = await response.json()
     resolve(data)
   }

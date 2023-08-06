@@ -26,6 +26,7 @@ import {
   PlusIcon,
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
+
 const sortOptions = [
   { name: "Best Rating", sort: "rating", order: "desc", current: false },
   { name: "Price: Low to High", sort: "price", order: "asc", current: false },
@@ -89,7 +90,7 @@ export default function AdminProductList() {
 
   useEffect(() => {
     const pagination = { _page: page, _limit: Items_Per_Page };
-    dispatch(fetchProductsByFiltersAsync({ filter, sort, pagination }));
+    dispatch(fetchProductsByFiltersAsync({ filter, sort, pagination ,admin:true}));
   }, [dispatch, filter, sort, page]);
   useEffect(() => {
     setPage(1);
@@ -98,7 +99,7 @@ export default function AdminProductList() {
   useEffect(() => {
     dispatch(fetchBrandsAsync());
     dispatch(fetchCategoriesAsync());
-  },[]);
+  },[dispatch]);
   
   return (
     <div className="bg-white">
@@ -524,6 +525,11 @@ function ProductGrid({ products }) {
                 {product.deleted && (
                     <div>
                       <p className="text-sm text-red-400">product deleted</p>
+                    </div>
+                  )}
+                {product.stock<=0 && (
+                    <div>
+                      <p className="text-sm text-red-400">out of stock </p>
                     </div>
                   )}
               </div>
