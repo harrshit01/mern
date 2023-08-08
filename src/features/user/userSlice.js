@@ -9,8 +9,8 @@ const initialState = {
 
 export const fetchLoggedInUserOrderAsync = createAsyncThunk(
   'user/fetchLoggedInUserOrders',
-  async (id) => {
-    const data = await fetchLoggedInUserOrders(id);
+  async () => {
+    const data = await fetchLoggedInUserOrders();
     // The value we return becomes the `fulfilled` action payload
     return data;
   }
@@ -48,7 +48,7 @@ export const userSlice = createSlice({
       .addCase(fetchLoggedInUserOrderAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         // this info can be different or more from logged-in User info
-        state.userInfo.orders = action.payload;
+        state.userOrders = action.payload;
       })
       .addCase(fetchLoggedInUserAsync.pending, (state) => {
         state.status = 'loading';
@@ -69,7 +69,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const selectUserOrders = (state)=>state.user.userInfo.orders;
+export const selectUserOrders = (state)=>state.user.userOrders;
 export const selectUserInfo = (state)=>state.user.userInfo;
 
 export const { increment } = userSlice.actions;

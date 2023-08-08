@@ -10,7 +10,7 @@ import ProductDetail from "./pages/ProductDetail"
 import Protected from './features/auth/components/Protected';
 import ProtectedAdmin from './features/auth/components/ProtectedAdmin';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectLoggedInUser } from './features/auth/authSlice';
+import { checkAuthAsync, selectLoggedInUser, selectUserChecked } from './features/auth/authSlice';
 import { fetchItemsByUserIdAsync } from './features/cart/cartSlice';
 import PageNotfound from './pages/404';
 import OrderSuccess from './pages/OrderSuccess';
@@ -26,17 +26,21 @@ import AdminOrdersPage from './pages/AdminOrdersPage';
 
 
 const App = () => {
-
   const dispatch = useDispatch();
   const user = useSelector(selectLoggedInUser);
+  const userChecked = useSelector(selectUserChecked);
+
+  // useEffect(() => {
+  //   dispatch(checkAuthAsync());
+  // }, [dispatch]);
 
   useEffect(() => {
     if (user) {
-      dispatch(fetchItemsByUserIdAsync(user.id))
-      dispatch(fetchLoggedInUserAsync(user.id))
+      dispatch(fetchItemsByUserIdAsync());
+      // we can get req.user by token on backend so no need to give in front-end
+      dispatch(fetchLoggedInUserAsync());
     }
-  }, [dispatch, user])
-
+  }, [dispatch, user]);
   return (
     <>
       <Router>
@@ -53,10 +57,10 @@ const App = () => {
           <Route path='/logout' element={<Logout />} />
           <Route path='/forgotpassword' element={<ForgotPassword />} />
           <Route path='/admin' element={<ProtectedAdmin><AdminHome /></ProtectedAdmin>} />
-          <Route path='/admin/productform' element={<ProtectedAdmin><AdminProductFormPage/></ProtectedAdmin>} />
-          <Route path='/admin/productform/edit/:id' element={<ProtectedAdmin><AdminProductFormPage/></ProtectedAdmin>} />
-          <Route path='/admin/orders' element={<ProtectedAdmin><AdminOrdersPage/></ProtectedAdmin>} />
-          
+          <Route path='/admin/productform' element={<ProtectedAdmin><AdminProductFormPage /></ProtectedAdmin>} />
+          <Route path='/admin/productform/edit/:id' element={<ProtectedAdmin><AdminProductFormPage /></ProtectedAdmin>} />
+          <Route path='/admin/orders' element={<ProtectedAdmin><AdminOrdersPage /></ProtectedAdmin>} />
+
 
           <Route path='*' element={<PageNotfound />} />
 
@@ -66,7 +70,7 @@ const App = () => {
         </Routes>
       </Router>
 
-
+    
     </>
   )
 }
