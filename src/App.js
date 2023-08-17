@@ -1,27 +1,30 @@
 import React, { useEffect } from 'react';
-import './App.css';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import "./App.css";
 import Home from './pages/Home';
 import SignUpPage from './pages/SignUpPage';
 import LoginPage from './pages/LoginPage';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import CartPage from './pages/CartPage';
 import Checkout from './pages/Checkout';
 import ProductDetail from "./pages/ProductDetail"
-import Protected from './features/auth/components/Protected';
-import ProtectedAdmin from './features/auth/components/ProtectedAdmin';
-import { useDispatch, useSelector } from 'react-redux';
-import { checkAuthAsync, selectLoggedInUser, selectUserChecked } from './features/auth/authSlice';
-import { fetchItemsByUserIdAsync } from './features/cart/cartSlice';
 import PageNotfound from './pages/404';
 import OrderSuccess from './pages/OrderSuccess';
 import UserOrderPage from './pages/UserOrderPage';
 import UserProfilePage from './pages/UserProfilePage';
-import { fetchLoggedInUserAsync } from './features/user/userSlice';
-import Logout from './features/auth/components/Logout';
-import ForgotPassword from './features/auth/components/ForgotPassword';
 import AdminHome from './pages/AdminHome';
 import AdminProductFormPage from './pages/AdminProductFormPage';
 import AdminOrdersPage from './pages/AdminOrdersPage';
+import Protected from './features/auth/components/Protected';
+import ProtectedAdmin from './features/auth/components/ProtectedAdmin';
+import Logout from './features/auth/components/Logout';
+import ForgotPassword from './features/auth/components/ForgotPassword';
+import { useDispatch, useSelector } from 'react-redux';
+import { checkAuthAsync, selectLoggedInUser, selectUserChecked } from './features/auth/authSlice';
+import { fetchItemsByUserIdAsync } from './features/cart/cartSlice';
+import { fetchLoggedInUserAsync } from './features/user/userSlice';
+import { RotatingLines } from 'react-loader-spinner';
+import StripeCheckout from './pages/StripeCheckout';
+import ResetPasswordPage from './pages/ResetPasswordPage';
 
 
 
@@ -30,9 +33,9 @@ const App = () => {
   const user = useSelector(selectLoggedInUser);
   const userChecked = useSelector(selectUserChecked);
 
-  // useEffect(() => {
-  //   dispatch(checkAuthAsync());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(checkAuthAsync());
+  }, [dispatch]);
 
   useEffect(() => {
     if (user) {
@@ -43,6 +46,7 @@ const App = () => {
   }, [dispatch, user]);
   return (
     <>
+    {userChecked?
       <Router>
         <Routes >
           <Route path='/' element={<Protected><Home /> </Protected>} />
@@ -56,10 +60,12 @@ const App = () => {
           <Route path='/profile' element={<Protected><UserProfilePage /></Protected>} />
           <Route path='/logout' element={<Logout />} />
           <Route path='/forgotpassword' element={<ForgotPassword />} />
+          <Route path='/resetpassword' element={<ResetPasswordPage />} />
           <Route path='/admin' element={<ProtectedAdmin><AdminHome /></ProtectedAdmin>} />
           <Route path='/admin/productform' element={<ProtectedAdmin><AdminProductFormPage /></ProtectedAdmin>} />
           <Route path='/admin/productform/edit/:id' element={<ProtectedAdmin><AdminProductFormPage /></ProtectedAdmin>} />
           <Route path='/admin/orders' element={<ProtectedAdmin><AdminOrdersPage /></ProtectedAdmin>} />
+          <Route path='/stripecheckout' element={<Protected><StripeCheckout /></Protected>} />
 
 
           <Route path='*' element={<PageNotfound />} />
@@ -68,8 +74,14 @@ const App = () => {
 
 
         </Routes>
-      </Router>
-
+      </Router>: 
+      <RotatingLines
+      strokeColor="grey"
+      strokeWidth="5"
+      animationDuration="0.75"
+      width="96"
+      visible={true}/>
+}
     
     </>
   )
