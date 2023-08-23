@@ -23,12 +23,8 @@ export default function StripeCheckout() {
     fetch("/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ totalamount: currentOrder.totalamount }),
-      meta:{
-        order_id : currentOrder.id 
-        //this info will go to stripe => then to our webhook
-        //so we can conclude that payment was successful even if the client closes window after pay
-      }
+      body: JSON.stringify({ totalamount: currentOrder.totalamount ,order_id: currentOrder.id}),
+    
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));

@@ -30,7 +30,7 @@ export default function Example() {
       {/* {!items.length && cartLoaded && <Navigate to='/' replace={true}></Navigate>} */}
       {
         items.length ?
-          cartLoaded &&
+          
 
           <div className="mx-6 bg-white my-6 max-w-7xl px-4 lg:px-8  ">
 
@@ -65,7 +65,7 @@ export default function Example() {
                             <label htmlFor="quantity" className="inline mr-4 text-sm font-medium leading-6 text-gray-900">
                               Qty
                             </label>
-                            <select className="py-1" onChange={(e) => handleQuantity(e, item)} value={item.quantity}>
+                            <select id='quantity' className="py-1" onChange={(e) => handleQuantity(e, item)} value={item.quantity}>
                               <option value={"1"}> 1 </option>
                               <option value={"2"}> 2 </option>
                               <option value={"3"}> 3 </option>
