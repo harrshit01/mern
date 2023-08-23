@@ -1,22 +1,16 @@
-// A mock function to mimic making an async request for data
 
 export function fetchProductsByFilters(filter,sort,pagination,admin) {
-  // filter = {"category":"smartphone"}
-  // TODO : on server we will support multi values
 
   // console.log(filter,sort,pagination);
   let queryString = '';
 
   for(let key in filter){
     
-    // queryString += `${key}=${filter[key]}&`
     const categoryValues = filter[key];
-    if(categoryValues.length>0){
-      const lastCategoryValue = categoryValues[categoryValues.length-1]
-      queryString += `${key}=${lastCategoryValue}&`
+    if(categoryValues.length){
+      queryString += `${key}=${categoryValues}&`
     }
   }
-  // ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
   
   for(let key in sort){
     queryString += `${key}=${sort[key]}&`
@@ -30,20 +24,19 @@ export function fetchProductsByFilters(filter,sort,pagination,admin) {
 
  }
   return new Promise(async (resolve) =>{
-    //TODO: we will not hard-code server URL here
-    const response = await fetch('http://localhost:8080/products?'+queryString ) 
+    const response = await fetch('/products?'+queryString ) 
     const data = await response.json();
 
     const totalItems = response.headers.get("X-Total-Count")
    
     resolve({products:data,totalItems: +totalItems});
-    // 
-    }
+ 
+  }
   );
 }
 export function fetchCategories() {
   return new Promise(async (resolve) =>{
-    const response = await fetch('http://localhost:8080/category') 
+    const response = await fetch('/category') 
     const data = await response.json()
     resolve(data)
   }
@@ -52,7 +45,7 @@ export function fetchCategories() {
 
 export function fetchBrands() {
   return new Promise(async (resolve) =>{
-    const response = await fetch('http://localhost:8080/brands') 
+    const response = await fetch('/brands') 
     const data = await response.json()
     resolve(data)
   }
@@ -60,7 +53,7 @@ export function fetchBrands() {
 }
 export function fetchProductByid(id) {
   return new Promise(async (resolve) =>{
-    const response = await fetch('http://localhost:8080/products/'+id) ;
+    const response = await fetch('/products/'+id) ;
     const data = await response.json()
     resolve(data)
   }
@@ -69,7 +62,7 @@ export function fetchProductByid(id) {
 
 export function createProduct(product) {
   return new Promise(async (resolve) => {
-    const response = await fetch("http://localhost:8080/products", {
+    const response = await fetch("/products", {
       method: "POST",
       body: JSON.stringify(product),
       headers: { "content-type": "application/json" },
@@ -80,13 +73,12 @@ export function createProduct(product) {
 };
 export function updateProduct(update) {
   return new Promise(async (resolve) => {
-    const response = await fetch('http://localhost:8080/products/'+update.id, {
+    const response = await fetch('/products/'+update.id, {
       method: 'PATCH',
       body: JSON.stringify(update),
       headers: { 'content-type': 'application/json' },
     });
     const data = await response.json();
-    // TODO: on server it will only return some info of user (not password)
     resolve( data );
   });
 }
